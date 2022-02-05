@@ -27,6 +27,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.android.firebaseui_login_sample.databinding.FragmentMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -45,7 +46,7 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
         return binding.root
@@ -57,6 +58,10 @@ class MainFragment : Fragment() {
 
         binding.authButton.setOnClickListener {
             launchSignInFlow()
+        }
+        binding.settingsBtn.setOnClickListener {
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToSettingsFragment())
         }
     }
 
